@@ -9,5 +9,4 @@ public class PollygrayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PollygrayApplication.class, args);
 	}
-
 }
