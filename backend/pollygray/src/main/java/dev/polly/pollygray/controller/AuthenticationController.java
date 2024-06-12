@@ -1,8 +1,10 @@
 package dev.polly.pollygray.controller;
 
 import dev.polly.pollygray.entity.user.AuthenticationDTO;
+import dev.polly.pollygray.entity.user.LoginResponseDTO;
 import dev.polly.pollygray.entity.user.RegisterDTO;
 import dev.polly.pollygray.entity.user.User;
+import dev.polly.pollygray.infra.security.TokenService;
 import dev.polly.pollygray.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +24,14 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TokenService tokenService;
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Validated AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User)auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")

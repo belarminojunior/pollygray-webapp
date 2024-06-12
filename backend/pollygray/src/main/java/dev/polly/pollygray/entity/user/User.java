@@ -39,7 +39,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List roles = new ArrayList();
         roles.add(new SimpleGrantedAuthority("ROLE_USER"));
-        
+
         if (this.role == UserRole.ADMIN) {
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
