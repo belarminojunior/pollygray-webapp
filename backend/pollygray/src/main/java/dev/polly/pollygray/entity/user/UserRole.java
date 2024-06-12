@@ -1,8 +1,8 @@
-package dev.polly.pollygray.entity;
+package dev.polly.pollygray.entity.user;
 
 public enum UserRole {
-    ADMINISTRATOR("admin"),
-    DEFAULT_USER("user"),
+    ADMIN("admin"),
+    USER("user"),
     ARTIST("artist");
 
     private String role;

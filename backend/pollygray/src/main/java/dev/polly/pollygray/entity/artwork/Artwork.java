@@ -1,4 +1,4 @@
-package dev.polly.pollygray.entity;
+package dev.polly.pollygray.entity.artwork;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

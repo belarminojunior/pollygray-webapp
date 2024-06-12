@@ -1,17 +1,16 @@
-package dev.polly.pollygray.entity;
+package dev.polly.pollygray.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,14 +25,22 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-    @CreatedDate
-    private LocalDate createdDate;
     private UserRole role;
+
+    public User(String firstName, String lastName, String email, String password, UserRole role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List roles = List.of(new SimpleGrantedAuthority("ROLE_USER"));
-        if (this.role == UserRole.ADMINISTRATOR) {
+        List roles = new ArrayList();
+        roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+        
+        if (this.role == UserRole.ADMIN) {
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         if (this.role == UserRole.ARTIST) {
