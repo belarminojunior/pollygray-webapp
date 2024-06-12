@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("api/users")
 public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping
-    public ResponseEntity<List<User>> getAllMovies() {
+    public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<List<User>>(userService.getAll(), HttpStatus.OK);
     }
 
