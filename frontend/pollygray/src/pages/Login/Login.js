@@ -1,6 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import authService from "../../services/authService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,27 +12,23 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", { email, password });
-      if (response.status === 200) {
-        navigate("/home");
-      } else {
-        alert("Login Failed");
-      }
+      const response = authService.login();
+      localStorage.setItem("token", response.data.token);
+      navigate("/home");
     } catch (error) {
-      console.error("Logging in error: ", error);
-      alert(error);
+      alert("Invalid Credentials");
     }
   };
 
   return (
-    <div className="login-container">
+    <div>
       <h2>Login</h2>
-
-      <form onSubmit={handleLogin}>
+      <form action="" onSubmit={handleLogin}>
         <div>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
+            name="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -43,15 +40,18 @@ const Login = () => {
           <label htmlFor="password">Password:</label>
           <input
             type="password"
+            name="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-
         <button type="submit">Login</button>
       </form>
+      <p>
+        Don't have an account? <a href="/signup">Sign Up</a>
+      </p>
     </div>
   );
 };
