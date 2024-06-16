@@ -1,4 +1,3 @@
-// import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/authService";
@@ -8,6 +7,8 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(true);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -18,6 +19,11 @@ const SignUp = () => {
     } catch (error) {
       alert("Error during registration");
     }
+  };
+
+  const handleConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+    setPasswordMatch(e.target.value === password);
   };
 
   return (
@@ -86,6 +92,27 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </div>
+
+          <div>
+            <label
+              htmlFor="confirmPassword"
+              className="block mb-1 font-semibold"
+            >
+              Confirm Password:
+            </label>
+            <input
+              className="w-full px-4 py-2 border rounded-lg"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={handleConfirmPassword}
+              required
+            />
+            {!passwordMatch && (
+              <p className="text-red-500 text-sm mt-1">Passwords don't match</p>
+            )}
           </div>
           <button
             className="w-full bg-black text-white py-2 rounded-lg font-semibold"
