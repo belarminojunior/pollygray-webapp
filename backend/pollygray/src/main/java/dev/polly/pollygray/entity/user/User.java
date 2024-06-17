@@ -1,11 +1,16 @@
 package dev.polly.pollygray.entity.user;
 
+import dev.polly.pollygray.entity.artwork.Artwork;
+import dev.polly.pollygray.entity.artwork.Comment;
+import dev.polly.pollygray.entity.artwork.Picture;
+import dev.polly.pollygray.entity.artwork.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,19 +26,23 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private ObjectId id;
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private UserRole role;
 
-    public User(String firstName, String lastName, String email, String password, UserRole role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+    // General information
+    private String firstName;
+    private String lastName;
+
+    // Artist-specific information
+    @DocumentReference
+    private Picture profilePicture;
+    @DocumentReference
+    private Picture bannerPicture;
+    private String biography;
+    @DocumentReference
+    private List<Artwork> artworks;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
