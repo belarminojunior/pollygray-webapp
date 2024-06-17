@@ -1,10 +1,10 @@
 package dev.polly.pollygray.controller;
 
-import dev.polly.pollygray.entity.user.AuthenticationDTO;
-import dev.polly.pollygray.entity.user.LoginResponseDTO;
-import dev.polly.pollygray.entity.user.RegisterDTO;
+import dev.polly.pollygray.dto.request.AuthenticationDTO;
+import dev.polly.pollygray.dto.response.LoginResponseDTO;
+import dev.polly.pollygray.dto.request.RegisterDTO;
 import dev.polly.pollygray.entity.user.User;
-import dev.polly.pollygray.infra.security.TokenService;
+import dev.polly.pollygray.security.TokenService;
 import dev.polly.pollygray.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

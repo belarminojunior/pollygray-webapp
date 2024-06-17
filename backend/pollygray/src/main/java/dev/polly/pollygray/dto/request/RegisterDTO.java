@@ -1,4 +1,6 @@
-package dev.polly.pollygray.entity.user;
+package dev.polly.pollygray.dto.request;
+
+import dev.polly.pollygray.entity.user.UserRole;
 
 public record RegisterDTO(
         String firstName,

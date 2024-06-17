@@ -1,6 +1,5 @@
-package dev.polly.pollygray.infra.security;
+package dev.polly.pollygray.security;
 
-import dev.polly.pollygray.entity.user.AuthenticationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

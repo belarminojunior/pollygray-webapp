@@ -1,4 +1,4 @@
-package dev.polly.pollygray.infra.security;
+package dev.polly.pollygray.security;
 
 import dev.polly.pollygray.repository.UserRepository;
 import jakarta.servlet.FilterChain;

@@ -1,4 +1,4 @@
-package dev.polly.pollygray.entity.user;
+package dev.polly.pollygray.dto.request;
 
 public record AuthenticationDTO(
         String email,

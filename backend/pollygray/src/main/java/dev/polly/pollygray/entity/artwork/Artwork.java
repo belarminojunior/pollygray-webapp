@@ -19,9 +19,9 @@ public class Artwork {
     private float price;
     private int quantity;
     private boolean isPublic;
-//    private Picture[] pictures;
-//    private Review[] reviews;
-//    private Comment[] comments;
-//    private Category category;
+    private Picture[] pictures;
+    private Review[] reviews;
+    private Comment[] comments;
+    private Category category;
 
 }

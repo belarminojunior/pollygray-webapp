@@ -1,4 +1,4 @@
-package dev.polly.pollygray.infra.security;
+package dev.polly.pollygray.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
