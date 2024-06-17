@@ -1,6 +1,6 @@
 package dev.polly.pollygray.dto.request;
 
-public record AuthenticationDTO(
+public record LoginRequestDTO(
         String email,
         String password
 ) {

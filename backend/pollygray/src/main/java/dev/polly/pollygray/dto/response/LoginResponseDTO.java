@@ -1,4 +1,7 @@
 package dev.polly.pollygray.dto.response;
 
-public record LoginResponseDTO(String token) {
+public record LoginResponseDTO(
+        String userEmail,
+        String token
+) {
 }
