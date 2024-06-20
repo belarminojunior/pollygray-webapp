@@ -43,16 +43,22 @@ public class User implements UserDetails {
     @DocumentReference
     private List<Artwork> artworks;
 
+    public boolean isArtist() {
+        return this.role == UserRole.ARTIST;
+    }
 
+    public boolean isAdmin() {
+        return this.role == UserRole.ADMIN;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List roles = new ArrayList();
         roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        if (this.role == UserRole.ADMIN) {
+        if (this.isAdmin()) {
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
-        if (this.role == UserRole.ARTIST) {
+        if (this.isArtist()) {
             roles.add(new SimpleGrantedAuthority("ROLE_ARTIST"));
         }
 
