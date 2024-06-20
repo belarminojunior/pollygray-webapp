@@ -13,12 +13,15 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    try {
-      authService.register();
-      navigate("/login");
-    } catch (error) {
-      alert("Error during registration");
-    }
+    authService
+      .register(firstName, lastName, email, password)
+      .then((response) => {
+        console.log(response);
+        navigate("/login");
+      })
+      .catch((error) => {
+        alert(`Signup failed: ${error}`);
+      });
   };
 
   const handleConfirmPassword = (e) => {

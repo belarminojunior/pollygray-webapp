@@ -10,14 +10,19 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = authService.login();
-      localStorage.setItem("token", response.data.token);
-      navigate("/home");
-    } catch (error) {
-      alert(error);
-      alert("Invalid Credentials");
-    }
+    authService
+      .login(email, password)
+      .then((data) => {
+        console.log(data);
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", data.userEmail);
+      })
+      .catch((error) => {
+        alert(`Login failed: ${error}`);
+      })
+      .finally(() => {
+        navigate("/");
+      });
   };
 
   return (

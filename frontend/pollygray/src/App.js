@@ -11,12 +11,12 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route
+          {/* <Route
             path="/"
             index
             element={<h2>Welcome to PollyGray E-commerce</h2>}
-          />
-          <Route path="/home" element={<Home />} />
+          /> */}
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
