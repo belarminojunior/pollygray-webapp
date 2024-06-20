@@ -8,13 +8,12 @@ import dev.polly.pollygray.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.RecursiveTask;
 
 @RestController
 @RequestMapping("api/artists")
+@CrossOrigin
 public class ArtistsController {
     @Autowired
     private UserService userService;
